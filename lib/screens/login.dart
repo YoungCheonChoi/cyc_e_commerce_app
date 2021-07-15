@@ -1,5 +1,7 @@
 import 'package:cyc_e_commerce_app/screens/signup.dart';
+import 'package:cyc_e_commerce_app/widgets/changescreen.dart';
 import 'package:flutter/material.dart';
+import '../widgets/mybutton.dart';
 
 class Login extends StatefulWidget {
 
@@ -94,40 +96,26 @@ class _LoginState extends State<Login> {
                           hintStyle: TextStyle(color: Colors.black)
                       ),
                     ),
-                    Container(
-                      height: 45,
-                      width: double.infinity,
-                      child: RaisedButton(
-                        child: Text("로그인"),
-                          color:Colors.grey,
-                          onPressed: (){
-                          validation();
-                          }),
+
+                    // mybutton 파일에서 버튼들 따로 관리
+                    // 로그인 버튼
+                    MyButton(onPressed: (){
+                      validation();
+                    },
+                      name: "로그인",
                     ),
-                    Row(
-                      children: <Widget>[
-                      Text("현재 계정이 없습니다."),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      GestureDetector(
+                    //페이지 이동 기능 changescreen.dart로 관리
+                    //페이지 이동, 로그인 화면 -> 회원가입 화면
+                    ChangeScreen(
+                        whichAccount: "계정이 없습니다.",
                         onTap: (){
                           //회원가입 페이지로 이동
                           Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(builder: (ctx)=>SignUp(),
-                            ),
-                          );
-                        },
-                          child:Text(
-                            "회원가입하기",
-                            style: TextStyle(
-                              color: Colors.cyan,
-                              fontSize: 20,
-                            ),
-                          ),
-                      )
-                    ],
-                    ),
+                          MaterialPageRoute(builder: (ctx)=>SignUp(),
+                        ),
+                      );
+                    },
+                        name: "회원가입하기"),
                   ],
                 ),
               )

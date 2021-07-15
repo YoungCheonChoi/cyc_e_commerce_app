@@ -1,4 +1,6 @@
 import 'package:cyc_e_commerce_app/screens/login.dart';
+import 'package:cyc_e_commerce_app/widgets/changescreen.dart';
+import 'package:cyc_e_commerce_app/widgets/mybutton.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -135,36 +137,23 @@ class _SignUpState extends State<SignUp> {
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      Container(
-                        height: 45,
-                        width: double.infinity,
-                        child: RaisedButton(
-                            child:Text("회원 가입"),
-                            color:Colors.blueGrey[400],
-                            onPressed: (){
-                              validation();
-                            }),
+                      //회원가입버튼
+                      MyButton(name: "회원가입", onPressed: (){
+                        validation();
+                      }
                       ),
-                      Row(
-                        children: <Widget> [
-                          Text("이미 계정이 존재합니다."),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: (){
-                              //회원가입 페이지로 이동
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(builder: (ctx)=>Login(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "로그인", style: TextStyle(color: Colors.cyan, fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                      )
+                      //페이지 이동, 로그인 화면 -> 회원가입 화면
+                      ChangeScreen(
+                          whichAccount: "이미 게정이 있습니다.",
+                          onTap: (){
+                            //회원가입 페이지로 이동
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(builder: (ctx)=>Login(),
+                              ),
+                            );
+                          },
+                          name: "로그인하기"),
+
                     ],
                   ),
              ),
