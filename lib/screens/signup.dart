@@ -2,6 +2,7 @@
 // import 'package:cyc_e_commerce_app/widgets/changescreen.dart';
 // import 'package:cyc_e_commerce_app/widgets/mybutton.dart';
 
+import 'package:cyc_e_commerce_app/widgets/changescreen.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
 
@@ -147,40 +148,65 @@ class _SignUpState extends State<SignUp> {
                           border: OutlineInputBorder(),
                         ),
                       ),
+
+                      //로그인버튼
+                      //오류 발생
+                      // MyButton(
+                      //     onPressed: (){
+                      //       validation();
+                      //     },
+                      //   name: "회원가입",
+                      // ),
+
                       Container(
                         height: 45,
                         width: double.infinity,
                         child: RaisedButton(
                             child: Text("회원 가입"),
-                            color: Colors.grey,
+                            color: Colors.pinkAccent,
                             onPressed: () {
                               validation();
                             }),
                       ),
-                      Row(
-                        children: [
-                          Text("이미 계정이 있습니다."),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: (){
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (ctx) => Login(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "로그인",
-                              style: TextStyle(
-                                  color: Colors.cyan,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
+
+                      //회원가입 화면 -> 로그인 화면
+                      //오류 발생
+                      ChangeScreen(
+                          name: "로그인하러가기",
+                          onTap: (){
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (ctx) => Login(),
+                              ),
+                            );
+                          },
+                          whichAccount: "계정이 이미 있습니다."
                       ),
+
+                      // Row(
+                      //   children: [
+                      //     Text("이미 계정이 있습니다."),
+                      //     SizedBox(
+                      //       width: 10,
+                      //     ),
+                      //     GestureDetector(
+                      //       onTap: (){
+                      //         Navigator.of(context).pushReplacement(
+                      //           MaterialPageRoute(
+                      //             builder: (ctx) => Login(),
+                      //           ),
+                      //         );
+                      //       },
+                      //       child: Text(
+                      //         "로그인",
+                      //         style: TextStyle(
+                      //             color: Colors.cyan,
+                      //             fontSize: 20,
+                      //             fontWeight: FontWeight.bold),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
-
   final Function onPressed;
   final String name;
 
@@ -13,9 +12,10 @@ class MyButton extends StatelessWidget {
       height: 45,
       width: double.infinity,
       child: RaisedButton(
-        child: Text(name),
+        child: Text(name, style: TextStyle(color: Colors.white),
+        ),
         color: Colors.pinkAccent,
-        onPressed: onPressed(), //이게맞나
+        onPressed: onPressed(),
       ),
     );
   }

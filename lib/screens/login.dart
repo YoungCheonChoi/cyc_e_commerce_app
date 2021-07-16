@@ -1,9 +1,6 @@
-// import 'package:cyc_e_commerce_app/screens/signup.dart';
-// import 'package:cyc_e_commerce_app/widgets/changescreen.dart';
-// import 'package:cyc_e_commerce_app/widgets/mytextformField.dart';
-// import 'package:cyc_e_commerce_app/widgets/passwordTextformfield.dart';
-// import '../widgets/mybutton.dart';
 
+import 'package:cyc_e_commerce_app/widgets/changescreen.dart';
+import '../widgets/mybutton.dart';
 import 'package:cyc_e_commerce_app/screens/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -93,6 +90,17 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ),
+
+                    //로그인버튼
+                    //오류 발생
+                    // MyButton(
+                    //     onPressed: (){
+                    //       validation();
+                    //     },
+                    //   name: "로그인",
+                    // ),
+
+                    //MyButton 폴더에서 관리
                     Container(
                       height: 45,
                       width: double.infinity,
@@ -103,29 +111,19 @@ class _LoginState extends State<Login> {
                             validation();
                           }),
                     ),
-                    Row(
-                      children: [
-                        Text("계정이 없습니다"),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (ctx) => SignUp(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            "회원가입하기",
-                            style: TextStyle(
-                                color: Colors.cyan,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
+
+                    //로그인 화면 -> 회원가입 화면
+                    //오류 발생
+                    ChangeScreen(
+                        name: "회원가입하러가기",
+                        onTap: (){
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (ctx) => SignUp(),
+                            ),
+                          );
+                        },
+                        whichAccount: "현재 계정이 존재하지 않습니다."
                     ),
                   ],
                 ),
