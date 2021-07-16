@@ -1,10 +1,11 @@
-import 'package:cyc_e_commerce_app/screens/login.dart';
-import 'package:cyc_e_commerce_app/widgets/changescreen.dart';
-import 'package:cyc_e_commerce_app/widgets/mybutton.dart';
+
+// import 'package:cyc_e_commerce_app/widgets/changescreen.dart';
+// import 'package:cyc_e_commerce_app/widgets/mybutton.dart';
+
 import 'package:flutter/material.dart';
+import 'login.dart';
 
 class SignUp extends StatefulWidget {
-
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -19,144 +20,170 @@ bool obserText = true;
 
 class _SignUpState extends State<SignUp> {
 
-  void validation(){
+  void validation() {
     final FormState? _form = _formkey.currentState;
-    if(_form!.validate()){
-      print("yes");
-    }else{
-      print("No");
+    if (_form!.validate()) {
+      print("회원가입 성공");
+    } else {
+      print("회원가입 실패");
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false, //키보드가 올라오면서 화면을 밀어내지 않게 해줌
       body: SafeArea(
         child: Form(
-          //key:_formkey,
+          key: _formkey,
           child: Container(
             child: Column(
               children: <Widget>[
                 Container(
                   height: 220,
+                  width: double.infinity,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget> [
-                      Text("회원 가입", style: TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                      ),),
+                    children: <Widget>[
+                      Text(
+                        "회원가입",
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20, //회원가입 글씨와 아래 텍스트필드 사이 여백 주기
                 ),
                 Container(
                   height: 400,
-                  margin: EdgeInsets.symmetric(horizontal: 10),  //양쪽 마진 주기
+                  margin: EdgeInsets.symmetric(horizontal: 20), //양쪽 마진 주기
                   width: double.infinity,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //간격 일정하게 주기
                     children: <Widget>[
                       TextFormField(
-                        validator: (value){
-                  if(value!.length < 6){
-                    return "아이디가 너무 짧습니다.";
-                  }else if(value == ""){
-                    return "아이디를 입력해주세요";
-                  }
-                  return  "";  //아이디창 초기화
-                },
+                        validator: (value) {
+                          if (value!.length < 2) {
+                            return "이름이 너무 짧습니다.";
+                          } else if (value == "") {
+                            return "빈칸을 채워주세요.";
+                          }
+                          return "";
+                        },
                         decoration: InputDecoration(
-                          hintText: "아이디",
+                          hintText: "이름",
                           hintStyle: TextStyle(
-                            color: Colors.black
+                            color: Colors.black,
                           ),
                           border: OutlineInputBorder(),
                         ),
                       ),
                       TextFormField(
-                        validator: (value){
-                        if(value == ""){
-                            return "이메일을 입력해주세요";
+                        validator: (value) {
+                          if (value!.length < 10) {
+                            return "이메일이 너무 짧습니다.";
+                          } else if (value == "") {
+                            return "빈칸을 채워주세요.";
                           }
-                          return  "";
+                          return "";
                         },
                         decoration: InputDecoration(
                           hintText: "이메일",
                           hintStyle: TextStyle(
-                              color: Colors.black
+                            color: Colors.black,
                           ),
                           border: OutlineInputBorder(),
                         ),
                       ),
                       TextFormField(
-                        obscureText: obserText,  //비밀번호 *****표시
-                        validator: (value){
-                          if(value == ""){
-                            return "비밀번호를 입력해주세요";
-                          }else if(value!.length < 8 ){
-                            return "비밀번호가 너무 짧습니다.";
+                        obscureText: obserText,
+                        validator: (value) {
+                          if (value!.length < 8) {
+                            return "비밀번호는 8자리 이상으로 설정해주세요.";
+                          } else if (value == "") {
+                            return "빈칸을 채워주세요.";
                           }
-                          return  "";
+                          return "";
                         },
                         decoration: InputDecoration(
                           hintText: "비밀번호",
                           suffixIcon: GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               setState(() {
                                 obserText = !obserText;
                               });
-                              FocusScope.of(context).unfocus();
+                              FocusScope.of(context)
+                                  .unfocus(); //키보드가 화면에 올라왔을 때 다른곳을 누르면 다시 내려가게
                             },
                             child: Icon(
-                                obserText == true? Icons.visibility:Icons.visibility_off,color: Colors.black),
+                                obserText == true? Icons.visibility: Icons.visibility_off,
+                                color: Colors.black),
                           ),
                           hintStyle: TextStyle(
-                              color: Colors.black
+                            color: Colors.black,
                           ),
                           border: OutlineInputBorder(),
                         ),
                       ),
                       TextFormField(
-                        validator: (value){
-                          if(value == ""){
-                            return "핸드폰 번호를 입력해주세요.";
-                          }else if(value!.length < 8){
-                            return "핸드폰 번호는 11자리여야 합니다.";
+                        validator: (value) {
+                          if (value!.length < 11) {
+                            return "전화번호는 11자리여야 합니다.";
+                          } else if (value == "") {
+                            return "빈칸을 채워주세요.";
                           }
                           return "";
                         },
                         decoration: InputDecoration(
                           hintText: "핸드폰 번호",
                           hintStyle: TextStyle(
-                              color: Colors.black
+                            color: Colors.black,
                           ),
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      //회원가입버튼
-                      MyButton(name: "회원가입", onPressed: (){
-                        validation();
-                      }
+                      Container(
+                        height: 45,
+                        width: double.infinity,
+                        child: RaisedButton(
+                            child: Text("회원 가입"),
+                            color: Colors.grey,
+                            onPressed: () {
+                              validation();
+                            }),
                       ),
-                      //페이지 이동, 로그인 화면 -> 회원가입 화면
-                      ChangeScreen(
-                          whichAccount: "이미 게정이 있습니다.",
-                          onTap: (){
-                            //회원가입 페이지로 이동
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(builder: (ctx)=>Login(),
-                              ),
-                            );
-                          },
-                          name: "로그인하기"),
-
+                      Row(
+                        children: [
+                          Text("이미 계정이 있습니다."),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (ctx) => Login(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              "로그인",
+                              style: TextStyle(
+                                  color: Colors.cyan,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-             ),
+                ),
               ],
             ),
           ),
@@ -165,7 +192,3 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
-
-
-
-
